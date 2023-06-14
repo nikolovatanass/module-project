@@ -21,3 +21,11 @@ variable "statisctics" {
 variable "alarm_description" {
   type = string
 }
+
+variable "autoscale_name" {
+  type = string
+}
+
+variable "autoscale_policy_arn" {
+  type = string
+}

@@ -5,3 +5,7 @@ variable "subnet_id3"{
 variable "subnet_id4"{
   type = string
 }
+
+variable "target_group_arn" {
+  type = string
+}

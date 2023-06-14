@@ -9,3 +9,7 @@ variable "aws_ami" {
 variable "instance_type" {
   type = string
 }
+
+variable "insance_profile_name" {
+  type = string
+}

@@ -9,3 +9,17 @@ resource "aws_autoscaling_group" "module_auto_scale_group" {
     version = "$Latest"
   }
 }
+
+resource "aws_autoscaling_policy" "module_nginx_autoscale_policy" {
+  name                   = "scale-by-one"
+  scaling_adjustment     = 1
+  adjustment_type        = lookup(var.auto_scale_policy_type, "policy_type")
+  cooldown               = 300
+  autoscaling_group_name = aws_autoscaling_group.module_auto_scale_group.name
+}
+
+# Attach Policy ---------------------------------------------------------------
+resource "aws_autoscaling_attachment" "asg_attachment_lb" {
+  autoscaling_group_name = aws_autoscaling_group.module_auto_scale_group.id
+  lb_target_group_arn = var.target_group_arn
+}
